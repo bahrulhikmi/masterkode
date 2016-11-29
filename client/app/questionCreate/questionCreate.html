@@ -1,0 +1,22 @@
+<div class="container">
+  <form name="form" ng-submit="$ctrl.submit()">
+    <h2>Title:</h2>
+    <input type="text" class="form-control" ng-model="$ctrl.question.title" name="title" required>
+    <span class="text-danger" ng-messages="form.title.$error">
+      <span ng-message="required">Required</span>
+    </span>
+    <span class="text-success" ng-show="form.title.$valid">OK</span>
+    <br>
+    <h2>Question:</h2>
+    <pagedown-editor rows=10 cols=80 ng-model="$ctrl.question.content" name="content" required></pagedown-editor>
+    <span class="text-danger" ng-messages="form.content.$error">
+      <span ng-message="required">Required</span>
+    </span>
+    <span class="text-success" ng-show="form.content.$valid">OK</span>
+    <h2>Tags:</h2>
+    <tags-input ng-model="$ctrl.question.tags">
+     <!-- <auto-complete source="loadTags($query)"></auto-complete> -->
+    </tags-input>
+    <input type="submit" class="btn btn-primary" ng-disabled="form.$invalid" value="Post question">
+  </form>
+</div>

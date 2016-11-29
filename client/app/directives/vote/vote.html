@@ -1,0 +1,10 @@
+<label class="rating-upvote">
+  <input type="checkbox" ng-change="upVote()" ng-model="entity.upValue" ng-true-value="1" ng-false-value="0" />
+  <ng-include src="'assets/upvote.svg'"></ng-include>
+  {{ entity.upvotes }}
+</label>
+<label class="rating-downvote">
+  <input type="checkbox" ng-change="downVote()" ng-model="entity.downValue" ng-true-value="1" ng-false-value="0" />
+  <ng-include src="'assets/downvote.svg'"></ng-include>
+  {{ entity.downvotes }}
+</label>

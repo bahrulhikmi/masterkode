@@ -1,0 +1,154 @@
+#question-show-container .comment{
+  hr {
+    margin: 0;
+  };
+  p {
+    margin: 0;
+  };
+  margin-left: 100px;
+};
+
+#question-show-container .answer{
+  margin-left: 50px;
+};
+
+.comment-wmd-input {
+  height: 50px;
+  width: 100%;
+  background-color: Gainsboro;
+  border: 1px solid DarkGray;
+};
+
+.vote-buttons {
+	float: left;
+	height: 60px;
+	width: 20px;
+	position: relative;
+}
+
+.vote-up-button, .vote-down-button, .voted-up-button, .voted-down-button, .vote-up-disabled, .vote-down-disabled {
+	text-indent: -9999px;
+	background: url('../assets/images/vote-buttons.png');
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 10px;
+	border: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left: 4px;
+	-webkit-transition: all 0s;
+	transition: all 0s;
+}
+
+.qa-vote-up-button:hover, .qa-vote-up-button:focus, .qa-vote-up-button:active,.qa-vote-down-button:hover, .qa-vote-down-button:focus, .qa-vote-down-button:active,
+.qa-voted-up-button:hover, .qa-voted-up-button:focus, .qa-voted-up-button:active,.qa-voted-down-button:hover, .qa-voted-down-button:focus, .qa-voted-down-button:active,
+.qa-vote-up-disabled:hover, .qa-vote-up-disabled:focus, .qa-vote-up-disabled:active,.qa-vote-down-disabled:hover, .qa-vote-down-disabled:focus, .qa-vote-down-disabled:active {
+	background: url('../assets/images/vote-buttons.png');
+	border: none;
+	cursor: pointer;
+}
+
+.vote-up-button {
+	background-position: 0 0;
+	top: 10px;
+}
+.vote-up-button:hover, .vote-up-button:focus, .vote-up-button:active {
+	background-position: 0 -10px;
+}
+
+.vote-down-button {
+	background-position: -16px 0;
+	bottom: 10px;
+}
+.vote-down-button:hover, .vote-down-button:focus, .vote-down-button:active {
+	background-position: -16px -10px;
+}
+
+.vote-up-disabled {
+	background-position: 0 -40px;
+	top: 10px;
+}
+.vote-up-disabled:hover, .vote-up-disabled:focus, .vote-up-disabled:active {
+	background-position: 0 -40px;
+}
+
+.vote-down-disabled {
+	background-position: -16px -40px;
+	bottom: 10px;
+}
+.vote-down-disabled:hover, .vote-down-disabled:focus, .vote-down-disabled:active {
+	background-position: -16px -40px;
+}
+
+.vote-one-button {
+	top: 25px;
+}
+
+.voted-up-button {
+	background-position: 0 -10px;
+}
+.voted-up-button:hover, .voted-up-button:focus, .voted-up-button:active {
+	background-position: 0 0;
+}
+
+.voted-down-button {
+	background-position: -16px -10px;
+}
+.voted-down-button:hover, .voted-down-button:focus, .voted-down-button:active {
+	background-position: -16px 0;
+}
+
+.q-view-stats {
+	float: left;
+}
+
+.voting {
+	background-color: #ecf0f1;
+	color: #445f7a;
+  margin-right: 20px;
+}
+
+@media (min-width: 800px) {
+	.voting {
+		width: 68px;
+		height: 60px;
+		line-height: 0.5;
+		float: left;
+	}
+}
+
+
+@media (max-width: 799px) {
+	.voting{
+		width: 60px;
+		height: 60px;
+		line-height: 0.5;
+		display: block;
+	}
+}
+
+.netvote-count {
+	display: block;
+	text-align: center;
+}
+
+@media (min-width: 800px) {
+	.netvote-count-data {
+		font-size: 24px;
+		line-height: 40px;
+		display: block;
+	}
+}
+
+@media (max-width: 799px) {
+	.netvote-count-data {
+		font-size: 24px;
+		line-height: 40px;
+		display: block;
+	}
+}
+
+.netvote-count-unit {
+	font-size: 12px;
+}

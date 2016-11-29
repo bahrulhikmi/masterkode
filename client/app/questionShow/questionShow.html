@@ -1,0 +1,122 @@
+<div class="container" id="question-show-container">
+
+<!-- Question title -->
+    <div>
+      <h1>
+       <div ng-if="! editing">{{$ctrl.question.title}}</div>
+       <input type=text ng-model="$ctrl.question.title" ng-if=" editing">
+     </h1>
+      <span ng-repeat="tag in $ctrl.question.tags">
+        <span class="label label-info">
+          {{tag.text}}
+        </span>
+          &nbsp;
+      </span>
+    </div>
+<!-- End Question title -->
+
+  <hr/>
+
+<!-- Question Vote panel -->
+  <form>
+      <div class="voting">
+        <div class="vote-buttons">
+            <input type="submit" ng-class="$ctrl.question.canUpvote?'vote-up-button': 'vote-up-disabled'" ng-click="$ctrl.upvote()">
+            <input type="submit" ng-class="$ctrl.question.canDownvote?'vote-down-button': 'vote-down-disabled' " ng-click="$ctrl.downvote()">
+        </div>
+        <div class="vote-count">
+          <span class="netvote-count">
+            <span class="netvote-count-data">{{$ctrl.getPointsCount($ctrl.question)}}</span>
+            <span class="netvote-count-unit">poin</span>
+          </span>
+        </div>
+      </div>
+  </form>
+<!-- End Question Vote panel -->
+
+  <button ng-if="$ctrl.isOwner($ctrl.question)" type="button" class="close" ng-click="$ctrl.deleteQuestion()">&times;</button>
+  <pagedown-viewer content="$ctrl.question.content" class="question-content"></pagedown-viewer>
+  <div class="text-right">by  <a ng-href="/users/{{$ctrl.question.user._id}}"> {{$ctrl.question.user.name}} </a> · {{$ctrl.question.createdAt|fromNow}}</div>
+  &nbsp;
+
+
+  <div class="comment">
+    <div ng-repeat="comment in $ctrl.question.comments">
+      <hr/>
+      <button ng-if="$ctrl.isOwner(comment)" type="button" class="close" ng-click="$ctrl.deleteComment(comment)">&times;</button>
+
+      <pagedown-viewer content="comment.content" ng-if="!editing"></pagedown-viewer>
+      <pagedown-editor ng-model="comment.content" ng-if=" editing"></pagedown-editor>
+      <button type="submit" class="btn btn-primary" ng-click="editing=false;$ctrl.updateComment(comment)" ng-show=" editing">Save</button>
+      <a ng-click="editing=!editing;" ng-show="$ctrl.isOwner(comment) && !editing">Edit</a>
+
+      <div class="text-right" style="vertical-align: bottom;">by <a ng-href="/users/{{comment.user._id}}">{{comment.user.name}}</a> · {{comment.createdAt|fromNow}}</div>
+      <div class="clearfix"></div>
+    </div>
+    <hr/>
+    <a ng-click="$ctrl.editNewComment=!$ctrl.editNewComment;">add a comment</a>
+    <form ng-if="$ctrl.editNewComment" name="commentForm">
+      <pagedown-editor ng-model="$ctrl.newComment.content" editor-class="'comment-wmd-input'"
+        ng-model="$ctrl.newComment.content" name="commentEditor" required>
+      </pagedown-editor>
+      <button type="button" class="btn btn-primary" ng-click="$ctrl.submitComment()" ng-disabled="commentForm.$invalid">Add Comment</button>
+    </form>
+  </div>
+  <h3>{{$ctrl.question.answers.length}} Answers</h3>
+  <div ng-repeat="answer in $ctrl.question.answers">
+    <hr/>
+
+    <!-- Answer Vote panel -->
+      <form>
+          <div class="voting">
+            <div class="vote-buttons">
+                <input type="submit" class="vote-up-button">
+                <input type="submit" class="vote-down-button">
+            </div>
+            <div class="vote-count">
+              <span class="netvote-count">
+                <span class="netvote-count-data">{{$ctrl.getPointsCount(answer)}}</span>
+                <span class="netvote-count-unit">poin</span>
+              </span>
+            </div>
+          </div>
+      </form>
+    <!-- End Answer Vote panel -->
+
+    <div class="answer">
+        <button ng-if="$ctrl.isOwner(answer)" type="button" class="close" ng-click="$ctrl.deleteAnswer(answer)">&times;</button>
+        <pagedown-viewer content="answer.content"></pagedown-viewer>
+        <div class="text-right">by<a ng-href="/users/{{$ctrl.question.user._id}}"> {{answer.user.name}}</a> · {{answer.createdAt|fromNow}}</div>
+        <div class="comment">
+            <div ng-repeat="comment in answer.comments">
+                <hr/>
+                <button ng-if="$ctrl.isOwner(comment)" type="button" class="close" ng-click="$ctrl.deleteAnswerComment(answer, comment)">&times;</button>
+
+                <pagedown-viewer content="comment.content" ng-if="!editing"></pagedown-viewer>
+                <pagedown-editor ng-model="comment.content" ng-if=" editing"></pagedown-editor>
+                <button type="submit" class="btn btn-primary" ng-click="editing=false;$ctrl.updateAnswerComment(answer, comment)" ng-show=" editing">Save</button>
+                <a ng-click="editing=!editing;" ng-show="$ctrl.isOwner(comment) && !editing">Edit</a>
+
+                <div class="text-right">by <a ng-href="/users/{{question.user._id}}">{{comment.user.name}}</a> · {{comment.createdAt|fromNow}}</div>
+                <div class="clearfix"></div>
+            </div>
+            <hr/>
+            <a ng-click="editNewAnswerComment=!editNewAnswerComment;answer.newAnswerComment={}">add a comment</a>
+            <form ng-if="editNewAnswerComment" name="answer_{{answer.id}}_comment">
+                <hr/>
+                <pagedown-editor ng-model="answer.newAnswerComment.content" editor-class="'comment-wmd-input'"
+                  ng-model="answer.newAnswerComment.content" required>
+                </pagedown-editor>
+                <button type="button" class="btn btn-primary" ng-click="$ctrl.submitAnswerComment(answer)" ng-disabled="answer_{{answer.id}}_comment.$invalid">Add Comment</button>
+            </form>
+        </div>
+
+    </div>
+  </div>
+  <hr/>
+  <h3>Your answer</h3>
+  <form name="answerForm" ng-submit="$ctrl.submitAnswer()">
+    <pagedown-editor rows=10 cols=80 ng-model="$ctrl.newAnswer.content" required></pagedown-editor>
+    <input type="submit" class="btn btn-primary" ng-disabled="answerForm.$invalid" value="Submit your answer">
+  </form>
+</div>
