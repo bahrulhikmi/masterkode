@@ -49,12 +49,6 @@ export function upvoteAnswer(req, res) {
   voteAnswer(req, res);
 }
 
-export function downvoteAnswer(req, res) {
-  req.body.user = req.user.id;
-  req.body.value = -1;
-  voteAnswer(req, res);
-}
-
 var voteAnswer = function (req, res) {
   Question.update({_id: req.params.id, 'answers._id': req.params.answerId}, {$push: {'answers.$.points': req.body}}, function(err, num){
     if(err) { return handleError(res)(err); }
@@ -63,18 +57,12 @@ var voteAnswer = function (req, res) {
   });
 }
 
-export function unvote(req, res) {
+export function unvoteAnswer(req, res) {
   Question.update({_id: req.params.id, 'answers._id': req.params.answerId}, {$pull: {'answers.$.points' : {'user': req.user.id}}}, function(err, num){
     if(err) { return handleError(res)(err); }
     if(num === 0) { return res.send(404).end(); }
     exports.show(req, res);
   });
-}
-
-export function upvoteAnswer(req, res) {
-  req.body.user = req.user.id;
-  req.body.value = 1;
-  voteComment(req, res);
 }
 
 export function downvoteAnswer(req, res) {
