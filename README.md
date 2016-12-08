@@ -1,5 +1,7 @@
 # masterkode - Q&A Site
 
+[![Build Status](https://travis-ci.org/bahrulhikmi/masterkode.svg?branch=dev)](https://travis-ci.org/bahrulhikmi/masterkode)
+
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.7.6.
 
 ## Getting Started
@@ -9,7 +11,6 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 - [Git](https://git-scm.com/)
 - [Node.js and npm](nodejs.org) Node ^4.2.3, npm ^2.14.7
 - [Bower](bower.io) (`npm install --global bower`)
-- [Ruby](https://www.ruby-lang.org) and then `gem install sass`
 - [Gulp](http://gulpjs.com/) (`npm install --global gulp`)
 - [Yeoman](http://yeoman.io/) - Already integrated with latest npm, for installing `npm install --global yo`
 - [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod`
@@ -67,4 +68,4 @@ main
 ```
 
 ## Troubleshooting
-* If you get sass error when running 'gulp serve' command, you need to run 'npm rebuild node-sass'
+
