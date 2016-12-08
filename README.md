@@ -1,5 +1,7 @@
 # masterkode - Q&A Site
 
+https://travis-ci.org/bahrulhikmi/masterkode
+
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.7.6.
 
 ## Getting Started
