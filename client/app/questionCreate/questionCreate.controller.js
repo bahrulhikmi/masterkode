@@ -9,10 +9,10 @@ class QuestionCreateComponent {
     this.$location = $location;
     this.message = 'Hello';
   }
-  
+
   submit(){
     var self = this;
-    self.$http.post('/api/questions', self.question).success(function(){
+    self.$http.post('/api/questions', self.question).then(function(){
        self.$location.path('/');
      });
   }
@@ -21,7 +21,7 @@ class QuestionCreateComponent {
 angular.module('masterkodeApp')
   .component('questionCreate', {
     templateUrl: 'app/questionCreate/questionCreate.html',
-    controller: QuestionCreateComponent	
+    controller: QuestionCreateComponent
   });
 
 })();

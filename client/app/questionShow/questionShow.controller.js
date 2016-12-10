@@ -53,7 +53,7 @@ class QuestionShowComponent {
 
   submitComment() {
       var self = this;
-      self.$http.post('/api/questions/' + self.$stateParams.id + '/comments', self.newComment).success(function(){
+      self.$http.post('/api/questions/' + self.$stateParams.id + '/comments', self.newComment).then(function(){
         self.loadQuestion();
         self.newComment = {};
         self.editNewComment = false;
@@ -62,42 +62,42 @@ class QuestionShowComponent {
 
   submitAnswerComment(answer) {
       var self = this;
-      self.$http.post('/api/questions/' + self.$stateParams.id + '/answers/' + answer._id + '/comments', answer.newAnswerComment).success(function(){
+      self.$http.post('/api/questions/' + self.$stateParams.id + '/answers/' + answer._id + '/comments', answer.newAnswerComment).then(function(){
       self.loadQuestion();
       });
   };
 
   deleteComment(comment) {
       var self = this;
-      self.$http.delete('/api/questions/' + self.$stateParams.id + '/comments/' + comment._id).success(function(){
+      self.$http.delete('/api/questions/' + self.$stateParams.id + '/comments/' + comment._id).then(function(){
         self.loadQuestion();
       });
   };
 
   deleteAnswerComment(answer, answerComment) {
       var self = this;
-      self.$http.delete('/api/questions/' + self.$stateParams.id + '/answers/' + answer._id + '/comments/' + answerComment._id).success(function(){
+      self.$http.delete('/api/questions/' + self.$stateParams.id + '/answers/' + answer._id + '/comments/' + answerComment._id).then(function(){
         self.loadQuestion();
       });
   };
 
   updateComment(comment) {
       var self = this;
-      self.$http.put('/api/questions/' + self.$stateParams.id + '/comments/' + comment._id, comment).success(function(){
+      self.$http.put('/api/questions/' + self.$stateParams.id + '/comments/' + comment._id, comment).then(function(){
         self.loadQuestion();
       });
   };
 
   updateAnswerComment(answer, answerComment) {
       var self = this;
-      self.$http.put('/api/questions/' + self.$stateParams.id + '/answers/' + answer._id + '/comments/' + answerComment._id, answerComment).success(function(){
+      self.$http.put('/api/questions/' + self.$stateParams.id + '/answers/' + answer._id + '/comments/' + answerComment._id, answerComment).then(function(){
         self.loadQuestion();
       });
   };
 
   loadQuestion(){
     var self =this;
-    this.$http.get('/api/questions/' + this.$stateParams.id).success(function(question) {
+    this.$http.get('/api/questions/' + this.$stateParams.id).then(function(question) {
       self.question = question;
       self.setVoteRight(self.question);
     });
@@ -105,7 +105,7 @@ class QuestionShowComponent {
 
   submitAnswer(){
     var self = this;
-      self.$http.post('/api/questions/' + self.$stateParams.id + '/answers', self.newAnswer).success(function(){
+      self.$http.post('/api/questions/' + self.$stateParams.id + '/answers', self.newAnswer).then(function(){
         self.loadQuestion();
         self.newAnswer = {};
       });
@@ -113,14 +113,14 @@ class QuestionShowComponent {
 
   deleteQuestion(){
     var self = this;
-    self.$http.delete('/api/questions/' + self.$stateParams.id).success(function(){
+    self.$http.delete('/api/questions/' + self.$stateParams.id).then(function(){
        self.$location.path('/');
      });
   }
 
   deleteAnswer(answer){
     var self = this;
-        self.$http.delete('/api/questions/' + self.$stateParams.id + '/answers/' + answer._id).success(function(){
+        self.$http.delete('/api/questions/' + self.$stateParams.id + '/answers/' + answer._id).then(function(){
        self.loadQuestion();
                  console.log("succc");
      });
@@ -128,14 +128,14 @@ class QuestionShowComponent {
 
   updateQuestion(){
     var self = this;
-    self.$http.put('/api/questions/' + self.$stateParams.id, self.question).success(function(){
+    self.$http.put('/api/questions/' + self.$stateParams.id, self.question).then(function(){
     self.loadQuestion();
     });
   }
 
   updateAnswer(answer){
     var self = this;
-    self.$http.put('/api/questions/' + self.$stateParams.id + '/answers/' + answer._id, answer).success(function(){
+    self.$http.put('/api/questions/' + self.$stateParams.id + '/answers/' + answer._id, answer).then(function(){
         self.loadQuestion();
 
       });
@@ -144,7 +144,7 @@ class QuestionShowComponent {
   upvote(){
     if(!this.question.canUpvote) return;
     var self = this;
-    self.$http.put('/api/questions/' + self.$stateParams.id + '/upvote', self.question).success(function(){
+    self.$http.put('/api/questions/' + self.$stateParams.id + '/upvote', self.question).then(function(){
     self.loadQuestion();
     });
   }
@@ -152,7 +152,7 @@ class QuestionShowComponent {
   downvote(){
     if(!this.question.canDownvote) return;
     var self = this;
-    self.$http.put('/api/questions/' + self.$stateParams.id + '/downvote').success(function(){
+    self.$http.put('/api/questions/' + self.$stateParams.id + '/downvote').then(function(){
     self.loadQuestion();
     });
   }
