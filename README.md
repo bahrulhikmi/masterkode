@@ -1,4 +1,4 @@
-# masterkode - Q&A Site
+# masterkode - Q&A Web application using MEAN
 
 [![Build Status](https://travis-ci.org/bahrulhikmi/masterkode.svg?branch=master)](https://travis-ci.org/bahrulhikmi/masterkode)
 
@@ -12,7 +12,7 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 - [Node.js and npm](nodejs.org) Node ^4.2.3, npm ^2.14.7
 - [Bower](bower.io) (`npm install --global bower`)
 - [Gulp](http://gulpjs.com/) (`npm install --global gulp`)
-- [Yeoman](http://yeoman.io/) - Already integrated with latest npm, for installing `npm install --global yo`
+- [Yeoman](http://yeoman.io/) (`npm install --global yo` )
 - [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod`
 
 ### Developing
@@ -25,6 +25,7 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 
 4. Run `gulp serve` to start the development server. It should automatically open the client in your browser when ready.
 
+5. Run `gulp test` to start the tests.
 
 ## Project Structure
 
@@ -67,5 +68,6 @@ main
 └── main.scss               - Styles
 ```
 
-## Troubleshooting
+## Contributing
+This was originally created as a learning project. Any contribution/feedback is welcome.
 
