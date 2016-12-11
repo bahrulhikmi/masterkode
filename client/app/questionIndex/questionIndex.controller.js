@@ -5,8 +5,9 @@
 class QuestionIndexComponent {
   constructor($http) {
     var self = this;
-    $http.get('/api/questions').then(function(questions) {
+    $http.get('/api/questions').success(function(questions) {
       self.questions = questions;
+      console.log(self.questions);
     });
   }
 

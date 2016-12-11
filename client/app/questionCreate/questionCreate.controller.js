@@ -12,7 +12,7 @@ class QuestionCreateComponent {
 
   submit(){
     var self = this;
-    self.$http.post('/api/questions', self.question).then(function(){
+    self.$http.post('/api/questions', self.question).success(function(){
        self.$location.path('/');
      });
   }

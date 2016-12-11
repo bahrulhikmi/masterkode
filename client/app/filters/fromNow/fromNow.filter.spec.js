@@ -11,9 +11,8 @@ describe('Filter: fromNow', function () {
     fromNow = $filter('fromNow');
   }));
 
-  it('should return the input prefixed with "fromNow filter:"', function () {
-    var text = 'angularjs';
-    expect(fromNow(text)).to.equal('fromNow filter: ' + text);
+  it('should return a value"', function () {
+    expect(fromNow("12/12/2016")).not.be.empty;
   });
 
 });
