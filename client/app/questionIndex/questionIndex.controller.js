@@ -7,6 +7,7 @@ class QuestionIndexComponent {
     var self = this;
     $http.get('/api/questions').success(function(questions) {
       self.questions = questions;
+      console.log(self.questions);
     });
   }
 

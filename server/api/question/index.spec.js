@@ -20,6 +20,15 @@ var routerStub = {
   createAnswer: sinon.spy()
 };
 
+var authServiceStub = {
+  isAuthenticated() {
+    return 'authService.isAuthenticated';
+  },
+  hasRole(role) {
+    return 'authService.hasRole.' + role;
+  }
+}
+
 // require the index with our stubbed out modules
 var questionIndex = proxyquire('./index.js', {
   'express': {
@@ -27,7 +36,8 @@ var questionIndex = proxyquire('./index.js', {
       return routerStub;
     }
   },
-  './question.controller': questionCtrlStub
+  './question.controller': questionCtrlStub,
+  '../../auth/auth.service': authServiceStub
 });
 
 describe('Question API Router:', function() {
@@ -60,7 +70,7 @@ describe('Question API Router:', function() {
 
     it('should route to question.controller.create', function() {
       expect(routerStub.post
-        .withArgs('/', 'questionCtrl.create')
+        .withArgs('/','authService.isAuthenticated', 'questionCtrl.create')
         ).to.have.been.calledOnce;
     });
 
@@ -70,27 +80,18 @@ describe('Question API Router:', function() {
 
     it('should route to question.controller.update', function() {
       expect(routerStub.put
-        .withArgs('/:id', 'questionCtrl.update')
+        .withArgs('/:id', 'authService.isAuthenticated', 'questionCtrl.update')
         ).to.have.been.calledOnce;
     });
 
   });
 
-  describe('PATCH /api/questions/:id', function() {
-
-    it('should route to question.controller.update', function() {
-      expect(routerStub.patch
-        .withArgs('/:id', 'questionCtrl.update')
-        ).to.have.been.calledOnce;
-    });
-
-  });
 
   describe('DELETE /api/questions/:id', function() {
 
     it('should route to question.controller.destroy', function() {
       expect(routerStub.delete
-        .withArgs('/:id', 'questionCtrl.destroy')
+        .withArgs('/:id','authService.isAuthenticated', 'questionCtrl.destroy')
         ).to.have.been.calledOnce;
     });
 
